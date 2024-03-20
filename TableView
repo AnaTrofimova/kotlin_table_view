@@ -1,0 +1,36 @@
+import android.graphics.Color
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import kotlin.random.Random
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var imageView: ImageView
+    private lateinit var button: Button
+
+    private val imageResources = arrayOf(
+        R.drawable.image1,
+        R.drawable.image2,
+        R.drawable.image3,
+        R.drawable.image4,
+        R.drawable.image5,
+    )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        imageView = findViewById(R.id.imageView)
+        button = findViewById(R.id.button)
+
+        button.setOnClickListener {
+            val randomImage = imageResources.random()
+            imageView.setImageResource(randomImage)
+
+            val randomColor = Color.rgb(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
+            button.setBackgroundColor(randomColor)
+        }
+    }
+}
